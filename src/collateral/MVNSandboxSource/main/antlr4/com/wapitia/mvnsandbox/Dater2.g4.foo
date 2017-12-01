@@ -1,0 +1,69 @@
+grammar Dater;
+
+// PARSER 
+
+opendaterange    : ON? (DAY | DATE)? OF? d=datespec                      # SD
+                 | AFTER (DAY | DATE)? OF? d=datespec                    # AFT
+                 | ON OR AFTER (DAY | DATE)? OF? d=datespec              # OOA
+                 | BEFORE (DAY | DATE)? OF? d=datespec                   # BEF
+                 | ON OR BEFORE (DAY | DATE)? OF? d=datespec             # OOB
+                 | BETWEEN (DAY | DATE)? OF? d1=datespec AND (DAY | DATE)? OF? d2=datespec # ODR
+                 ;
+    
+datespec         : yy=yearnum DASH mm=monthspec DASH dd=dayofmonth    # CDATE1
+                 | mm=monthspec SLASH dd=dayofmonth SLASH yy=yearnum  # CDATE2
+                 ;
+
+yearnum          : Year4  # YEAR4
+                 | Year2  # YEAR2;
+
+monthspec        : monthnum    # MONO
+                 | monthname   # MONAME
+                 ;
+
+dayofmonth       : DayOfMonth;
+
+monthnum         : MonthNum;
+
+monthname        : jan | feb | mar | apr | may | jun | jul  | aug  | sep | oct | nov | dec;
+
+jan              : 'JANUARY' | 'JAN' ;
+feb              : 'FEBRUARY' | 'FEB' ;
+mar              : 'MARCH' | 'MAR' ;
+apr              : 'APRIL' | 'APR' ;
+may              : 'MAY' ;
+jun              : 'JUNE' | 'JUN' ;
+jul              : 'JULY' | 'JUL' ;
+aug              : 'AUGUST' | 'AUG';
+sep              : 'SEPTEMBER' | 'SEP' ;
+oct              : 'OCTOBER' | 'OCT';
+nov              : 'NOVEMBER' | 'NOV';
+dec              : 'DECEMBER' | 'DEC';
+
+// LEXER
+
+BETWEEN     : 'BETWEEN';
+AND         : 'AND';
+DASH        : '-';
+SLASH       : '/';
+ON          : 'ON';
+OR          : 'OR';
+BEFORE      : 'BEFORE';
+AFTER       : 'AFTER';
+DAY         : 'DAY';
+DATE        : 'DATE';
+OF          : 'OF';
+
+Year2       : [0-9][0-9];
+
+Year4       : [0-9][0-9][0-9][0-9];
+
+MonthNum    : [0][1-9] | [1][0-2]; 
+
+DayOfMonth  : [0][1-9] | [1-2][0-9] | [3][0-1]; 
+
+    // Whitespace is ignored
+
+WS  :  [ \t\r\n\u000C]+ -> skip
+    ;
+

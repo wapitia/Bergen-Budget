@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<project name="MVNSandbox" default="none" xmlns:current="ant:current">
+
+	  <target name="none" description="noop">
+	  </target>
+
+	  <target name="debug" description="echo properties to target/temp directory">
+	    <ant target="debug" antfile="src/main/resources/buildMVNSandbox.xml" />
+	  </target>
+
+  	  <target name="zip.source" description="zip source and project-specific files">
+  	    <ant target="zip.source" antfile="src/main/resources/buildMVNSandbox.xml" />
+  	  </target>
+	    	
+</project>

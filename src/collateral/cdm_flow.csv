@@ -1,0 +1,5 @@
+Item,From,To,Amount,Cycle,Notes,After Date,Until Date,Until Amount
+1,Purse,Ben,300,Monthly day 15,Middle of Month Ben,,,
+2,Purse,Rac,1000,Monthly day 1,Rac Monthly Rent,,,
+3,Purse,Ben,1000,Monthly day 1,Ben Monthly Rent,,,
+4,Purse,1MG,1459,Monthly day 4,1st Bank Mortgage,,,192000
